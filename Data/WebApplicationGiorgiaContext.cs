@@ -17,5 +17,7 @@ namespace WebApplicationGiorgia.Data
         public DbSet<WebApplicationGiorgia.Models.Book> Book { get; set; } = default!;
 
         public DbSet<WebApplicationGiorgia.Models.Publisher> Publisher { get; set; }
+
+        public DbSet<WebApplicationGiorgia.Models.Author> Author { get; set; }
     }
 }
