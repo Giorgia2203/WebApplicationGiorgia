@@ -29,8 +29,9 @@ namespace WebApplicationGiorgia.Pages.Books
                 return NotFound();
             }
 
-            var book = await _context.Book.FirstOrDefaultAsync(m => m.ID == id);
-
+            var book = await _context.Book.Include(b => b.Author)
+                                          .Include(b => b.Publisher)
+                                          .FirstOrDefaultAsync(m => m.ID == id);
             if (book == null)
             {
                 return NotFound();
