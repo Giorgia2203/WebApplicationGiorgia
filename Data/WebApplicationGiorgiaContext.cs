@@ -19,5 +19,7 @@ namespace WebApplicationGiorgia.Data
         public DbSet<WebApplicationGiorgia.Models.Publisher> Publisher { get; set; }
 
         public DbSet<WebApplicationGiorgia.Models.Author> Author { get; set; }
+
+        public DbSet<WebApplicationGiorgia.Models.Category> Category { get; set; }
     }
 }
