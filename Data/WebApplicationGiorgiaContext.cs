@@ -21,5 +21,9 @@ namespace WebApplicationGiorgia.Data
         public DbSet<WebApplicationGiorgia.Models.Author> Author { get; set; }
 
         public DbSet<WebApplicationGiorgia.Models.Category> Category { get; set; }
+
+        public DbSet<WebApplicationGiorgia.Models.Member> Member { get; set; }
+
+        public DbSet<WebApplicationGiorgia.Models.Borrowing> Borrowing { get; set; }
     }
 }

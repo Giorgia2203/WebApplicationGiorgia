@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplicationGiorgia.Data;
 
@@ -11,9 +12,10 @@ using WebApplicationGiorgia.Data;
 namespace WebApplicationGiorgia.Migrations
 {
     [DbContext(typeof(WebApplicationGiorgiaContext))]
-    partial class WebApplicationGiorgiaContextModelSnapshot : ModelSnapshot
+    [Migration("20221107201039_Borrowings")]
+    partial class Borrowings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -103,32 +105,6 @@ namespace WebApplicationGiorgia.Migrations
                     b.ToTable("BookCategory");
                 });
 
-            modelBuilder.Entity("WebApplicationGiorgia.Models.Borrowing", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<int?>("BookID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MemberID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ReturnDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("BookID");
-
-                    b.HasIndex("MemberID");
-
-                    b.ToTable("Borrowing");
-                });
-
             modelBuilder.Entity("WebApplicationGiorgia.Models.Category", b =>
                 {
                     b.Property<int>("ID")
@@ -144,39 +120,6 @@ namespace WebApplicationGiorgia.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Category");
-                });
-
-            modelBuilder.Entity("WebApplicationGiorgia.Models.Member", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<string>("Adress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telefon")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Member");
                 });
 
             modelBuilder.Entity("WebApplicationGiorgia.Models.Publisher", b =>
@@ -230,21 +173,6 @@ namespace WebApplicationGiorgia.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("WebApplicationGiorgia.Models.Borrowing", b =>
-                {
-                    b.HasOne("WebApplicationGiorgia.Models.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookID");
-
-                    b.HasOne("WebApplicationGiorgia.Models.Member", "Member")
-                        .WithMany("Borrowings")
-                        .HasForeignKey("MemberID");
-
-                    b.Navigation("Book");
-
-                    b.Navigation("Member");
-                });
-
             modelBuilder.Entity("WebApplicationGiorgia.Models.Author", b =>
                 {
                     b.Navigation("Books");
@@ -258,11 +186,6 @@ namespace WebApplicationGiorgia.Migrations
             modelBuilder.Entity("WebApplicationGiorgia.Models.Category", b =>
                 {
                     b.Navigation("BookCategories");
-                });
-
-            modelBuilder.Entity("WebApplicationGiorgia.Models.Member", b =>
-                {
-                    b.Navigation("Borrowings");
                 });
 
             modelBuilder.Entity("WebApplicationGiorgia.Models.Publisher", b =>
